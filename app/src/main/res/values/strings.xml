@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">DeadLiner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="subjects">
+        <item></item>
+        <item>Физика</item>
+        <item>Математика</item>
+        <item>История</item>
+        <item>Ин.яз</item>
+        <item>Дискретная математика</item>
+        <item>Программирование</item>
+        <item>ЦДО</item>
+        <item>Физ-ра</item>
+        <item>КиК</item>
+        <item>ВПД</item>
+        <item>Свое</item>
+    </string-array>
+</resources>
