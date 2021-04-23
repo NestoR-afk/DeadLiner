@@ -15,6 +15,11 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import java.util.*
 
+/**
+ * Bottom sheet
+ *
+ * @constructor Create empty Bottom sheet
+ */
 class BottomSheet: BottomSheetDialogFragment() {
 
     private lateinit var deadlineViewModel: DeadlineViewModel
@@ -24,6 +29,14 @@ class BottomSheet: BottomSheetDialogFragment() {
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
 
+    /**
+     * On create view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,6 +65,12 @@ class BottomSheet: BottomSheetDialogFragment() {
         return root
     }
 
+    /**
+     * Get date from date picker
+     *
+     * @param datePicker
+     * @return
+     */
     private fun getDateFromDatePicker(datePicker: MaterialDatePicker<Long>): Date {
            return try {Date(datePicker.selection!!)}
         catch (e:NullPointerException) {Date(MaterialDatePicker.todayInUtcMilliseconds())}
