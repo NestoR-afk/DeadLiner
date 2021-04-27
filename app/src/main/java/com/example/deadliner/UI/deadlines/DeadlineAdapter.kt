@@ -15,13 +15,13 @@ import java.util.*
 class DeadlineAdapter(
         val inflater: LayoutInflater,
         private val deadlineViewModel: DeadlineViewModel
-        ) : RecyclerView.Adapter<DeadlineAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<DeadlineAdapter.ViewHolder>() {
 
     private var deadlines = emptyList<Deadline>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = inflater.inflate(R.layout.item_deadline, parent, false);
-       return ViewHolder(view)
+        val view = inflater.inflate(R.layout.item_deadline, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -29,7 +29,7 @@ class DeadlineAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.bind(getItem(position))
+        holder.bind(getItem(position))
     }
 
     private fun getItem(id: Int): Deadline {
@@ -43,8 +43,8 @@ class DeadlineAdapter(
 
         fun bind(deadline: Deadline) {
 
-            itemView.deleteButton.setOnClickListener{
-            deadlineViewModel.deleteDeadline(deadline)
+            itemView.deleteButton.setOnClickListener {
+                deadlineViewModel.deleteDeadline(deadline)
             }
 
             desc.text = deadline.description
@@ -52,6 +52,7 @@ class DeadlineAdapter(
             date.text = android.text.format.DateFormat.format("EEE, d MMMM, yyyy", deadline.date)
         }
     }
+
     fun setData(deadlinesList: List<Deadline>) {
         this.deadlines = deadlinesList
         notifyDataSetChanged()

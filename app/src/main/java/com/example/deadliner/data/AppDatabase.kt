@@ -6,14 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.deadliner.model.Deadline
+import com.example.deadliner.model.Subject
 
 const val DATABASE_VERSION = 1
 const val DATABASE_NAME = "app_database"
 
-@Database(entities = [Deadline::class], version = DATABASE_VERSION,exportSchema = false)
+@Database(entities = [Deadline::class, Subject::class], version = DATABASE_VERSION, exportSchema = false)
 @TypeConverters(Converters::class)
-    abstract class AppDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun deadlineDao(): DeadlineDao
+    abstract fun subjectDao(): SubjectDao
 
     companion object {
         @Volatile
@@ -26,9 +28,9 @@ const val DATABASE_NAME = "app_database"
                     tempInstance = INSTANCE
                     if (tempInstance == null) {
                         INSTANCE = Room.databaseBuilder(
-                            context.applicationContext,
-                            AppDatabase::class.java,
-                            DATABASE_NAME
+                                context.applicationContext,
+                                AppDatabase::class.java,
+                                DATABASE_NAME
                         ).build()
                         tempInstance = INSTANCE
                     }

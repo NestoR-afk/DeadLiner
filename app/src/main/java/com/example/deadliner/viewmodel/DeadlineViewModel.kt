@@ -15,25 +15,26 @@ class DeadlineViewModel(application: Application) : AndroidViewModel(application
     val allDeadlines: LiveData<List<Deadline>>
 
     private val deadlineRepository: DeadlineRepository
+
     init {
         val deadlineDao = AppDatabase.getDatabase(application).deadlineDao()
         deadlineRepository = DeadlineRepository(deadlineDao)
         allDeadlines = deadlineRepository.allDeadlines
     }
 
-    fun addDeadline(deadline: Deadline){
+    fun addDeadline(deadline: Deadline) {
         viewModelScope.launch {
             deadlineRepository.addDeadline(deadline)
         }
     }
 
-    fun updateDeadline(deadline: Deadline){
+    fun updateDeadline(deadline: Deadline) {
         viewModelScope.launch {
             deadlineRepository.updateDeadline(deadline)
         }
     }
 
-    fun deleteDeadline(deadline: Deadline){
+    fun deleteDeadline(deadline: Deadline) {
         viewModelScope.launch {
             deadlineRepository.deleteDeadline(deadline)
         }

@@ -16,9 +16,9 @@ interface DeadlineDao {
     suspend fun updateDeadline(deadline: Deadline)
 
     @Delete
-        suspend fun deleteDeadline(deadline: Deadline)
+    suspend fun deleteDeadline(deadline: Deadline)
 
     @Query("SELECT * FROM deadlines_table ORDER BY date")
-         fun getDeadlines() : LiveData<List<Deadline>>
+    fun getDeadlines(): LiveData<List<Deadline>>
 
 }

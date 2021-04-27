@@ -23,14 +23,14 @@ class DeadlinesFragment : Fragment() {
     private lateinit var adapter: DeadlineAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_deadlines, container, false)
 
         deadlineViewModel = ViewModelProvider(this).get(DeadlineViewModel::class.java)
-        adapter = DeadlineAdapter(inflater,deadlineViewModel)
+        adapter = DeadlineAdapter(inflater, deadlineViewModel)
 
         var list = root.findViewById<RecyclerView>(R.id.deadlinesList)
         list.adapter = adapter

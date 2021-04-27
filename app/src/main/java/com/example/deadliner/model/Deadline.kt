@@ -10,9 +10,9 @@ import java.util.*
 @Entity(tableName = "deadlines_table")
 @Parcelize
 class Deadline(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val subject: String,
-    val description: String,
-    val date: Date?
+        @PrimaryKey(autoGenerate = true)
+        val id: Int,
+        val subject: String,
+        val description: String,
+        val date: Date?
 ) : Parcelable
