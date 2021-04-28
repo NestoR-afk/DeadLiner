@@ -6,6 +6,15 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+/**
+ * Deadline
+ *
+ * @property id
+ * @property subject
+ * @property description
+ * @property date
+ * @constructor Create empty Deadline
+ */
 
 @Entity(tableName = "deadlines_table")
 @Parcelize

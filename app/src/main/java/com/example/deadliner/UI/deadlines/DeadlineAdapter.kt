@@ -12,6 +12,13 @@ import com.example.deadliner.viewmodel.DeadlineViewModel
 import kotlinx.android.synthetic.main.item_deadline.view.*
 import java.util.*
 
+/**
+ * Deadline adapter
+ *
+ * @property inflater
+ * @property deadlineViewModel
+ * @constructor Create empty Deadline adapter
+ */
 class DeadlineAdapter(
         val inflater: LayoutInflater,
         private val deadlineViewModel: DeadlineViewModel
@@ -19,11 +26,23 @@ class DeadlineAdapter(
 
     private var deadlines = emptyList<Deadline>()
 
+    /**
+     * On create view holder
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = inflater.inflate(R.layout.item_deadline, parent, false);
        return ViewHolder(view)
     }
 
+    /**
+     * Get item count
+     *
+     * @return
+     */
     override fun getItemCount(): Int {
         return deadlines.size
     }
