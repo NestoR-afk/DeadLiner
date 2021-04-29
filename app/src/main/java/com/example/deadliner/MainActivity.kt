@@ -3,22 +3,21 @@ package com.example.deadliner
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.graphics.drawable.Animatable
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.dynamicanimation.animation.DynamicAnimation.TRANSLATION_Y
 
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.deadliner.model.Subject
+import com.example.deadliner.viewmodel.SubjectViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fab.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +33,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.my_toolbar))
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        val bottomSheet = DeadlineBottomSheet()
+        val deadlineBottomSheet = DeadlineBottomSheet()
+        val subjectBottomSheet = SubjectBottomSheet()
+        val subjectViewModel = SubjectViewModel(application)
 
         fab.setOnClickListener {
             expanded = !expanded
@@ -44,11 +45,19 @@ class MainActivity : AppCompatActivity() {
                 collapseFab()
             }
         }
+
         add_deadline.setOnClickListener {
-            if (!bottomSheet.isAdded) {
-                bottomSheet.show(supportFragmentManager, "add_deadline_action_fragment")
+            if (!deadlineBottomSheet.isAdded) {
+                deadlineBottomSheet.show(supportFragmentManager, "add_deadline_action_fragment")
             }
         }
+
+        add_schedule.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            calendar.set(2021,3,30,10,30)
+            subjectViewModel.addSubject(Subject(1,"Math",calendar.timeInMillis,"ломо","Практика",7))
+        }
+
         fab_container.viewTreeObserver.addOnPreDrawListener(object: ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
                 fab_container.viewTreeObserver.removeOnPreDrawListener(this)

@@ -1,7 +1,6 @@
 package com.example.deadliner
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,8 @@ import com.example.deadliner.model.Deadline
 import com.example.deadliner.viewmodel.DeadlineViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
-import kotlinx.android.synthetic.main.bottom_sheet.*
+import kotlinx.android.synthetic.main.deadline_bottom_sheet.*
+
 import java.util.*
 
 class DeadlineBottomSheet : BottomSheetDialogFragment() {
@@ -29,10 +29,10 @@ class DeadlineBottomSheet : BottomSheetDialogFragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.bottom_sheet, container, false)
+        val root = inflater.inflate(R.layout.deadline_bottom_sheet, container, false)
         deadlineViewModel = ViewModelProvider(this).get(DeadlineViewModel::class.java)
 
-        root.findViewById<AppCompatButton>(R.id.appCompatButton).setOnClickListener {
+        root.findViewById<AppCompatButton>(R.id.saveDeadlineButton).setOnClickListener {
 
             val subject = spinner.selectedItem.toString()
             val description = edit_description.text.toString()
