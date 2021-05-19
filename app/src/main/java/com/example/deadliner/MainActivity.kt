@@ -13,6 +13,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.deadliner.bottomSheets.DeadlineBottomSheet
+import com.example.deadliner.bottomSheets.SubjectBottomSheet
 import com.example.deadliner.model.Subject
 import com.example.deadliner.viewmodel.SubjectViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
         val deadlineBottomSheet = DeadlineBottomSheet()
         val subjectBottomSheet = SubjectBottomSheet()
-        val subjectViewModel = SubjectViewModel(application)
 
         fab.setOnClickListener {
             expanded = !expanded
@@ -53,12 +54,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         add_schedule.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            calendar.set(2021,3,30,10,30)
-            subjectViewModel.addSubject(Subject(1,"Math",calendar.timeInMillis,"ломо","Практика",7))
+            if (!subjectBottomSheet.isAdded) {
+                subjectBottomSheet.show(supportFragmentManager, "add_subject_action_fragment")
+            }
         }
 
-        fab_container.viewTreeObserver.addOnPreDrawListener(object: ViewTreeObserver.OnPreDrawListener {
+
+        //ANIMATION STUFF
+        fab_container.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
                 fab_container.viewTreeObserver.removeOnPreDrawListener(this)
                 offset1 = fab.y - add_deadline.y
@@ -83,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 .setDuration(resources.getInteger(android.R.integer.config_mediumAnimTime).toLong())
     }
 
-    fun createExpandAnimator(view: View,  offset: Float): ObjectAnimator {
+    fun createExpandAnimator(view: View, offset: Float): ObjectAnimator {
         return ObjectAnimator.ofFloat(view, "translationY", offset, 0f)
                 .setDuration(resources.getInteger(android.R.integer.config_mediumAnimTime).toLong())
     }
@@ -94,13 +97,14 @@ class MainActivity : AppCompatActivity() {
             drawable.start()
         }
     }
+
     private fun collapseFab() {
         fab.setImageResource(R.drawable.animated_minus)
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(createCollapseAnimator(add_deadline, offset1),
                 createCollapseAnimator(add_schedule, offset2))
 
-                animatorSet.start()
+        animatorSet.start()
         animateFab()
     }
 
@@ -109,8 +113,8 @@ class MainActivity : AppCompatActivity() {
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(createExpandAnimator(add_deadline, offset1),
                 createExpandAnimator(add_schedule, offset2))
-                animatorSet.start()
-                        animateFab()
+        animatorSet.start()
+        animateFab()
     }
 
 }

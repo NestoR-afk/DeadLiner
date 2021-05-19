@@ -47,7 +47,7 @@ class SubjectViewModel(application: Application) : AndroidViewModel(application)
         todayCalendar.time = date
         if (allSubjects.value != null) {
             for (subj in allSubjects.value!!) {
-                subjectCalendar.timeInMillis = subj.date
+                subjectCalendar.time = subj.date
                 val range = todayCalendar.get(Calendar.DAY_OF_YEAR) - subjectCalendar.get(Calendar.DAY_OF_YEAR)
                 if ((range % subj.howOften == 0) || (range == 0))
                     subjects.add(subj)

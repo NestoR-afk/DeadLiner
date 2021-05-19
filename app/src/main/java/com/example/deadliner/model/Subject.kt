@@ -12,8 +12,9 @@ class Subject(
         @PrimaryKey(autoGenerate = true)
         val id: Int,
         val name: String,
-        val date: Long,
-        val place: String,
         val type: String,
+        val place: String,
+        val teacher: String,
+        val date: Date,
         val howOften: Int
 ) : Parcelable

@@ -16,6 +16,6 @@ interface SubjectDao {
     @Delete
     suspend fun deleteSubject(subject: Subject)
 
-    @Query("SELECT * FROM subjects_table ")
+    @Query("SELECT * FROM subjects_table ORDER BY date")
     fun getSubjects(): LiveData<List<Subject>>
 }

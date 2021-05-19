@@ -21,13 +21,15 @@ class ScheduleFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        var root =  inflater.inflate(R.layout.fragment_schedule, container, false)
+        var root = inflater.inflate(R.layout.fragment_schedule, container, false)
 
         subjectViewModel = ViewModelProvider(this).get(SubjectViewModel::class.java)
-        adapter = ScheduleAdapter(inflater, subjectViewModel)
+        adapter = ScheduleAdapter(inflater, subjectViewModel, context)
+
 
         var list = root.findViewById<RecyclerView>(R.id.subjectsList)
         list.adapter = adapter
+        registerForContextMenu(list)
 
         subjectViewModel.allSubjects.observe(viewLifecycleOwner) {
             adapter.setData()

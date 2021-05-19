@@ -20,5 +20,4 @@ interface DeadlineDao {
 
     @Query("SELECT * FROM deadlines_table ORDER BY date")
     fun getDeadlines(): LiveData<List<Deadline>>
-
 }

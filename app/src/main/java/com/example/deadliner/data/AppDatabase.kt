@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.deadliner.model.Deadline
 import com.example.deadliner.model.Subject
 
-const val DATABASE_VERSION = 1
+const val DATABASE_VERSION = 3
 const val DATABASE_NAME = "app_database"
 
 @Database(entities = [Deadline::class, Subject::class], version = DATABASE_VERSION, exportSchema = false)
@@ -31,7 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
                                 context.applicationContext,
                                 AppDatabase::class.java,
                                 DATABASE_NAME
-                        ).build()
+                        ).fallbackToDestructiveMigration().build()
                         tempInstance = INSTANCE
                     }
                 }
