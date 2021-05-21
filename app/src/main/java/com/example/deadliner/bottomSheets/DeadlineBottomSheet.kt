@@ -16,29 +16,64 @@ import kotlinx.android.synthetic.main.deadline_bottom_sheet.*
 
 import java.util.*
 
+/**
+ * Deadline bottom sheet
+ *
+ * @constructor Create empty Deadline bottom sheet
+ */
 class DeadlineBottomSheet : BottomSheetDialogFragment() {
-
+    /**
+     * Deadline view model
+     */
     private lateinit var deadlineViewModel: DeadlineViewModel
+
+    /**
+     * Date picker
+     */
     private var datePicker: MaterialDatePicker<Long> =
             MaterialDatePicker.Builder.datePicker()
                     .setTitleText("Select date")
                     .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                     .build()
 
+    /**
+     * On create view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        /**
+         * Root
+         */
         val root = inflater.inflate(R.layout.deadline_bottom_sheet, container, false)
         deadlineViewModel = ViewModelProvider(this).get(DeadlineViewModel::class.java)
 
         root.findViewById<AppCompatButton>(R.id.saveDeadlineButton).setOnClickListener {
-
+            /**
+             * Subject
+             */
             val subject = spinner.selectedItem.toString()
+
+            /**
+             * Description
+             */
             val description = edit_description.text.toString()
+
+            /**
+             * Date
+             */
             val date = getDateFromDatePicker(datePicker)
 
+            /**
+             * Deadline
+             */
             val deadline = Deadline(0, subject, description, date)
             deadlineViewModel.addDeadline(deadline)
             Toast.makeText(context, "Дедлайн успешно добавлен", Toast.LENGTH_SHORT).show()
@@ -53,6 +88,12 @@ class DeadlineBottomSheet : BottomSheetDialogFragment() {
         return root
     }
 
+    /**
+     * Get date from date picker
+     *
+     * @param datePicker
+     * @return
+     */
     private fun getDateFromDatePicker(datePicker: MaterialDatePicker<Long>): Date {
         return try {
             Date(datePicker.selection!!)

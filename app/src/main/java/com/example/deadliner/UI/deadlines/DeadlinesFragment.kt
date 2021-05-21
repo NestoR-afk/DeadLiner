@@ -16,22 +16,44 @@ import com.example.deadliner.viewmodel.DeadlineViewModel
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_deadline.*
 
-
+/**
+ * Deadlines fragment
+ *
+ * @constructor Create empty Deadlines fragment
+ */
 class DeadlinesFragment : Fragment() {
-
+    /**
+     * Deadline view model
+     */
     private lateinit var deadlineViewModel: DeadlineViewModel
+
+    /**
+     * Adapter
+     */
     private lateinit var adapter: DeadlineAdapter
 
+    /**
+     * On create view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
+        /**
+         * Root
+         */
         val root = inflater.inflate(R.layout.fragment_deadlines, container, false)
 
         deadlineViewModel = ViewModelProvider(this).get(DeadlineViewModel::class.java)
         adapter = DeadlineAdapter(inflater, deadlineViewModel)
-
+        /**
+         * List
+         */
         var list = root.findViewById<RecyclerView>(R.id.deadlinesList)
         list.adapter = adapter
 

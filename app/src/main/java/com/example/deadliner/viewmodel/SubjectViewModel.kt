@@ -10,10 +10,22 @@ import com.example.deadliner.repository.SubjectRepository
 import kotlinx.coroutines.launch
 import java.util.*
 
+/**
+ * Subject view model
+ *
+ * @constructor
+ *
+ * @param application
+ */
 class SubjectViewModel(application: Application) : AndroidViewModel(application) {
-
+    /**
+     * All subjects
+     */
     val allSubjects: LiveData<List<Subject>>
 
+    /**
+     * Subject repository
+     */
     private val subjectRepository: SubjectRepository
 
     init {
@@ -22,27 +34,59 @@ class SubjectViewModel(application: Application) : AndroidViewModel(application)
         allSubjects = subjectRepository.allSubjects
     }
 
+    /**
+     * Add subject
+     *
+     * @param subject
+     */
     fun addSubject(subject: Subject) {
         viewModelScope.launch {
             subjectRepository.addSubject(subject)
         }
     }
 
+    /**
+     * Update subject
+     *
+     * @param subject
+     */
     fun updateSubject(subject: Subject) {
         viewModelScope.launch {
             subjectRepository.updateSubject(subject)
         }
     }
 
+    /**
+     * Delete subject
+     *
+     * @param subject
+     */
     fun deleteSubject(subject: Subject) {
         viewModelScope.launch {
             subjectRepository.deleteSubject(subject)
         }
     }
 
+    /**
+     * Get subjects by date
+     *
+     * @param date
+     * @return
+     */
     fun getSubjectsByDate(date: Date): MutableList<Subject> {
+        /**
+         * Subjects
+         */
         val subjects = mutableListOf<Subject>()
+
+        /**
+         * Subject calendar
+         */
         val subjectCalendar = Calendar.getInstance()
+
+        /**
+         * Today calendar
+         */
         val todayCalendar = Calendar.getInstance()
         todayCalendar.time = date
         if (allSubjects.value != null) {

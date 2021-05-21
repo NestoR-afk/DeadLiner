@@ -16,14 +16,32 @@ import kotlinx.android.synthetic.main.item_schedule.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Schedule adapter
+ *
+ * @property inflater
+ * @property subjectViewModel
+ * @property context
+ * @constructor Create empty Schedule adapter
+ */
 class ScheduleAdapter(
         val inflater: LayoutInflater,
         private val subjectViewModel: SubjectViewModel,
         val context: Context?)
     : RecyclerView.Adapter<ScheduleAdapter.ViewHolder>() {
-
+    /**
+     * Dates
+     */
     private val dates = mutableListOf<Date>()
+
+    /**
+     * Today calendar
+     */
     private val todayCalendar = Calendar.getInstance()
+
+    /**
+     * End calendar
+     */
     private val endCalendar = Calendar.getInstance()
 
 
@@ -36,13 +54,44 @@ class ScheduleAdapter(
         }
     }
 
+    /**
+     * View holder
+     *
+     * @constructor
+     *
+     * @param item
+     */
     inner class ViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+        /**
+         * Day text view
+         */
         private val dayTextView: TextView = item.findViewById(R.id.day_of_week)
+
+        /**
+         * Date text view
+         */
         private val dateTextView: TextView = item.findViewById(R.id.date)
+
+        /**
+         * Classes amount
+         */
         private val classesAmount: TextView = item.findViewById(R.id.classes)
+
+        /**
+         * Classes layout
+         */
         private var classesLayout: LinearLayout = item.findViewById(R.id.classes_layout)
+
+        /**
+         * Simple date format
+         */
         private val simpleDateFormat = SimpleDateFormat("EEEE")
 
+        /**
+         * Bind
+         *
+         * @param date
+         */
         fun bind(date: Date) {
 
             simpleDateFormat.applyPattern("EEEE")
@@ -54,7 +103,9 @@ class ScheduleAdapter(
 
             simpleDateFormat.applyPattern("d MMMM")
             dateTextView.text = simpleDateFormat.format(date)
-
+            /**
+             * Subjects
+             */
             val subjects = subjectViewModel.getSubjectsByDate(date)
             classesAmount.text = getClassesAmountString(subjects.size)
 
@@ -62,6 +113,9 @@ class ScheduleAdapter(
                 var subjectView = makeSubjectView(subj)
 
                 subjectView.setOnLongClickListener {
+                    /**
+                     * Dialog fragment
+                     */
                     val dialogFragment = MyDialogFragment(subjectViewModel, subj)
                     dialogFragment.show((context as FragmentActivity).supportFragmentManager, "dialog")
 
@@ -73,29 +127,64 @@ class ScheduleAdapter(
 
     }
 
-
+    /**
+     * On create view holder
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = inflater.inflate(R.layout.item_schedule, parent, false)
         return ViewHolder(view)
     }
 
+    /**
+     * Get item id
+     *
+     * @param position
+     * @return
+     */
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
 
+    /**
+     * Get item view type
+     *
+     * @param position
+     * @return
+     */
     override fun getItemViewType(position: Int): Int {
         return position
     }
 
+    /**
+     * Get item count
+     *
+     * @return
+     */
     override fun getItemCount(): Int {
         return dates.size
     }
 
+    /**
+     * On bind view holder
+     *
+     * @param holder
+     * @param position
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.classes_layout.removeAllViews()
         holder.bind(dates[position])
     }
 
+    /**
+     * Make subject view
+     *
+     * @param subject
+     * @return
+     */
     fun makeSubjectView(subject: Subject): View {
         var subjectView = inflater.inflate(R.layout.item_subject, null)
         val type = subjectView.findViewById<TextView>(R.id.type)
@@ -121,6 +210,12 @@ class ScheduleAdapter(
         return subjectView
     }
 
+    /**
+     * Get classes amount string
+     *
+     * @param amount
+     * @return
+     */
     fun getClassesAmountString(amount: Int): String {
         return when (amount) {
             0 -> ", пар нет"
@@ -131,6 +226,10 @@ class ScheduleAdapter(
         }
     }
 
+    /**
+     * Set data
+     *
+     */
     fun setData() {
         notifyDataSetChanged()
     }

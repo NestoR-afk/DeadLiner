@@ -7,7 +7,20 @@ import androidx.fragment.app.DialogFragment
 import com.example.deadliner.model.Subject
 import com.example.deadliner.viewmodel.SubjectViewModel
 
+/**
+ * My dialog fragment
+ *
+ * @property subjectViewModel
+ * @property subject
+ * @constructor Create empty My dialog fragment
+ */
 class MyDialogFragment(val subjectViewModel: SubjectViewModel, val subject: Subject) : DialogFragment() {
+    /**
+     * On create dialog
+     *
+     * @param savedInstanceState
+     * @return
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)

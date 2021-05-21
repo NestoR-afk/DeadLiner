@@ -6,6 +6,18 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+/**
+ * Subject
+ *
+ * @property id
+ * @property name
+ * @property type
+ * @property place
+ * @property teacher
+ * @property date
+ * @property howOften
+ * @constructor Create empty Subject
+ */
 @Entity(tableName = "subjects_table")
 @Parcelize
 class Subject(
