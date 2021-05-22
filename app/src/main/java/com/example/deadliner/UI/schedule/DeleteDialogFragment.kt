@@ -14,7 +14,7 @@ import com.example.deadliner.viewmodel.SubjectViewModel
  * @property subject
  * @constructor Create empty My dialog fragment
  */
-class MyDialogFragment(val subjectViewModel: SubjectViewModel, val subject: Subject) : DialogFragment() {
+class DeleteDialogFragment(val subjectViewModel: SubjectViewModel, val subject: Subject) : DialogFragment() {
     /**
      * On create dialog
      *

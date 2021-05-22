@@ -27,6 +27,7 @@ class Subject(
         val type: String,
         val place: String,
         val teacher: String,
-        val date: Date,
-        val howOften: Int
+        val date: Long,
+        val howOften: Int,
+        val isFromServer: Boolean
 ) : Parcelable

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.deadliner.data.DeadlineDao
 import com.example.deadliner.model.Deadline
 import io.reactivex.Observable
+import java.util.*
 
 /**
  * Deadline repository
@@ -42,5 +43,9 @@ class DeadlineRepository(private val deadlineDao: DeadlineDao) {
      */
     suspend fun updateDeadline(deadline: Deadline) {
         deadlineDao.updateDeadline(deadline)
+    }
+
+    suspend fun deleteServerDeadlines(){
+        deadlineDao.deleteServerDeadlines()
     }
 }

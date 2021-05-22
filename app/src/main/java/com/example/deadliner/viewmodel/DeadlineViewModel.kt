@@ -8,7 +8,9 @@ import com.example.deadliner.data.AppDatabase
 import com.example.deadliner.model.Deadline
 import com.example.deadliner.repository.DeadlineRepository
 import io.reactivex.Observable
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.util.*
 
 /**
  * Deadline view model
@@ -67,5 +69,10 @@ class DeadlineViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun deleteServerDeadlines() {
+        viewModelScope.launch {
+            deadlineRepository.deleteServerDeadlines()
+        }
+    }
 
 }
