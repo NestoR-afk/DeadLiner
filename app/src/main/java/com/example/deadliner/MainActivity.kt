@@ -15,11 +15,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.deadliner.bottomSheets.DeadlineBottomSheet
 import com.example.deadliner.bottomSheets.SubjectBottomSheet
-import com.example.deadliner.model.Subject
-import com.example.deadliner.viewmodel.SubjectViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fab.*
-import java.util.*
 
 /**
  * Main activity

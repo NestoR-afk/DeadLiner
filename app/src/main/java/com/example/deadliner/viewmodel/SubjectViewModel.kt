@@ -91,12 +91,18 @@ class SubjectViewModel(application: Application) : AndroidViewModel(application)
         todayCalendar.time = date
         if (allSubjects.value != null) {
             for (subj in allSubjects.value!!) {
-                subjectCalendar.time = subj.date
+                subjectCalendar.timeInMillis = subj.date
                 val range = todayCalendar.get(Calendar.DAY_OF_YEAR) - subjectCalendar.get(Calendar.DAY_OF_YEAR)
                 if ((range % subj.howOften == 0) || (range == 0))
                     subjects.add(subj)
             }
         }
         return subjects
+    }
+
+    fun deleteServerDeadlines() {
+        viewModelScope.launch {
+            subjectRepository.deleteServerDeadlines()
+        }
     }
 }

@@ -103,7 +103,7 @@ class SubjectBottomSheet : BottomSheetDialogFragment() {
             /**
              * Subject
              */
-            val subject = Subject(0, subjectName, type, place, teacher, calendar.time, howOften)
+            val subject = Subject(0, subjectName, type, place, teacher, calendar.timeInMillis, howOften, false)
             subjectViewModel.addSubject(subject)
             Toast.makeText(context, "Предмет успешно добавлен", Toast.LENGTH_SHORT).show()
             dismiss()

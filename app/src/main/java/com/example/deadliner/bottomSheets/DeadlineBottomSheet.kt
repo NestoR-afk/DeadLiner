@@ -19,7 +19,7 @@ import java.util.*
 /**
  * Deadline bottom sheet
  *
- * @constructor Create empty Deadline bottom sheet
+ * @constructor Create Deadline bottom sheet for adding deeadlines
  */
 class DeadlineBottomSheet : BottomSheetDialogFragment() {
     /**
@@ -74,7 +74,7 @@ class DeadlineBottomSheet : BottomSheetDialogFragment() {
             /**
              * Deadline
              */
-            val deadline = Deadline(0, subject, description, date)
+            val deadline = Deadline(0, subject, description, date.time,false)
             deadlineViewModel.addDeadline(deadline)
             Toast.makeText(context, "Дедлайн успешно добавлен", Toast.LENGTH_SHORT).show()
             dismiss()

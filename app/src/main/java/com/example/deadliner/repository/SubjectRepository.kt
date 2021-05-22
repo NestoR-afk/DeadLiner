@@ -43,4 +43,8 @@ class SubjectRepository(private val subjectDao: SubjectDao) {
     suspend fun updateSubject(subject: Subject) {
         subjectDao.updateSubject(subject)
     }
+
+    suspend fun deleteServerDeadlines() {
+        subjectDao.deleteServerSubjects()
+    }
 }

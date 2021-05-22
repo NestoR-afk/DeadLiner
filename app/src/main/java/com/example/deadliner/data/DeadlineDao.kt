@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.deadliner.model.Deadline
 import io.reactivex.Observable
+import java.util.*
 
 /**
  * Deadline dao
@@ -43,4 +44,8 @@ interface DeadlineDao {
      */
     @Query("SELECT * FROM deadlines_table ORDER BY date")
     fun getDeadlines(): LiveData<List<Deadline>>
+
+    @Query("DELETE FROM deadlines_table WHERE isFromServer = 1")
+    suspend fun deleteServerDeadlines()
+
 }
