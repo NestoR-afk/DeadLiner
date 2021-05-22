@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bottom_sheet"
+    android:id="@+id/deadline_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    app:behavior_hideable="true"
-   >
+    app:behavior_hideable="true">
 
     <TextView
         android:id="@+id/subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="Предмет:"
         android:textColor="@color/black"
         android:textSize="16dp"
@@ -22,24 +20,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        app:layout_constraintBaseline_toBaselineOf="@id/subject"
         android:id="@+id/spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:entries="@array/subjects"
+        app:layout_constraintBaseline_toBaselineOf="@id/subject"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/subject"
-        android:entries="@array/subjects"/>
+        app:layout_constraintStart_toEndOf="@+id/subject" />
 
 
     <TextView
         android:id="@+id/deadline_description"
-        app:layout_constraintEnd_toEndOf="@id/subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Описание:"
-        android:textSize="16dp"
         android:layout_marginTop="8dp"
+        android:text="Описание:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="@id/subject"
         app:layout_constraintTop_toBottomOf="@+id/subject" />
 
     <EditText
@@ -47,11 +45,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
+        android:focusable="true"
+        android:imeOptions="actionDone"
         android:text=""
         android:textColor="@color/black"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@id/space"
         app:layout_constraintBaseline_toBaselineOf="@id/deadline_description"
+        app:layout_constraintBottom_toTopOf="@id/space"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/deadline_description" />
 
@@ -59,7 +59,7 @@
         android:id="@+id/space"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+        app:layout_constraintBottom_toTopOf="@+id/saveDeadlineButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/deadline_description" />
@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_description" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
+        android:id="@+id/saveDeadlineButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -90,5 +90,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_description"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,4 +16,6 @@
         <item>ВПД</item>
         <item>Свое</item>
     </string-array>
+    <string name="action_delete">Удалить</string>
+    <string name="action_update">Изменить</string>
 </resources>

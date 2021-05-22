@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subject_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    app:behavior_hideable="true">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_subject_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/itmo_blue"
+        android:text="Создать"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.80"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Предмет:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/save_subject_button" />
+
+    <EditText
+        android:id="@+id/subjects_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:text=""
+        android:textSize="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/subject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/subject" />
+
+    <TextView
+        android:id="@+id/subject_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Тип:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/subject"
+        app:layout_constraintTop_toBottomOf="@+id/subject" />
+
+    <RadioGroup
+        android:id="@+id/types_rg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/subject_type"
+        app:layout_constraintTop_toBottomOf="@id/subjects_input">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/type_lection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:focusedByDefault="false"
+            android:gravity="center"
+            android:text="Лекция"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/type_practice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center"
+            android:text="Практика"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/type_sport"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center"
+            android:text="Спорт"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/type_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center"
+            android:text="Прочее"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/subject_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Место:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/place_input"
+        app:layout_constraintEnd_toEndOf="@id/subject_type"
+        app:layout_constraintTop_toBottomOf="@+id/types_rg" />
+
+    <EditText
+        android:id="@+id/place_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text=""
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/subject_place"
+        app:layout_constraintTop_toBottomOf="@id/types_rg" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/set_date_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/itmo_blue"
+        android:text="Выбрать дату"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/teacher"
+        app:layout_constraintTop_toBottomOf="@+id/regularity_rg" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/set_time_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/itmo_blue"
+        android:text="Выбрать время"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/set_date_subject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/set_date_subject" />
+
+    <TextView
+        android:id="@+id/teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Преподаватель:"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/subject_place"
+        app:layout_constraintTop_toBottomOf="@id/place_input" />
+
+    <EditText
+        android:id="@+id/teacher_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text=""
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/teacher"
+        app:layout_constraintTop_toBottomOf="@id/place_input" />
+
+    <RadioGroup
+        android:id="@+id/regularity_rg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/teacher_input"
+        app:layout_constraintTop_toBottomOf="@id/teacher_input">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/regularity_once_a_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:focusedByDefault="true"
+            android:gravity="center"
+            android:text="Раз в неделю"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/regularity_once_a_two_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="?android:attr/listChoiceIndicatorSingle"
+            android:gravity="center"
+            android:text="Раз в две недели"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

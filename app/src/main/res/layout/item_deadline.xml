@@ -13,23 +13,23 @@
         android:text=""
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/cities" />
 
     <TextView
         android:id="@+id/deadline_date"
-        android:layout_marginStart="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/date/ddmmyy"
+        android:layout_marginStart="4dp"
         android:text=""
-        android:textSize="12dp"
         android:textColor="@color/black"
+        android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@id/deadline_activity"
-        app:layout_constraintTop_toBottomOf="@id/deadline_description"/>
+        app:layout_constraintTop_toBottomOf="@id/deadline_description"
+        tools:text="@tools:sample/date/ddmmyy" />
 
     <TextView
         android:id="@+id/deadline_description"
@@ -40,8 +40,8 @@
         android:text=""
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/deadline_activity"
         app:layout_constraintStart_toStartOf="@id/deadline_activity"
+        app:layout_constraintTop_toBottomOf="@id/deadline_activity"
         tools:text="@tools:sample/lorem" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

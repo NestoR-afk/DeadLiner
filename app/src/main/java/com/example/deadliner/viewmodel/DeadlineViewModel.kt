@@ -10,30 +10,58 @@ import com.example.deadliner.repository.DeadlineRepository
 import io.reactivex.Observable
 import kotlinx.coroutines.launch
 
+/**
+ * Deadline view model
+ *
+ * @constructor
+ *
+ * @param application
+ */
 class DeadlineViewModel(application: Application) : AndroidViewModel(application) {
-
+    /**
+     * All deadlines
+     */
     val allDeadlines: LiveData<List<Deadline>>
 
+    /**
+     * Deadline repository
+     */
     private val deadlineRepository: DeadlineRepository
+
     init {
         val deadlineDao = AppDatabase.getDatabase(application).deadlineDao()
         deadlineRepository = DeadlineRepository(deadlineDao)
         allDeadlines = deadlineRepository.allDeadlines
     }
 
-    fun addDeadline(deadline: Deadline){
+    /**
+     * Add deadline
+     *
+     * @param deadline
+     */
+    fun addDeadline(deadline: Deadline) {
         viewModelScope.launch {
             deadlineRepository.addDeadline(deadline)
         }
     }
 
-    fun updateDeadline(deadline: Deadline){
+    /**
+     * Update deadline
+     *
+     * @param deadline
+     */
+    fun updateDeadline(deadline: Deadline) {
         viewModelScope.launch {
             deadlineRepository.updateDeadline(deadline)
         }
     }
 
-    fun deleteDeadline(deadline: Deadline){
+    /**
+     * Delete deadline
+     *
+     * @param deadline
+     */
+    fun deleteDeadline(deadline: Deadline) {
         viewModelScope.launch {
             deadlineRepository.deleteDeadline(deadline)
         }
